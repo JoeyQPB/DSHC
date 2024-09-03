@@ -15,7 +15,7 @@ public class authorValidation  implements ICommentValidations {
                 data.getAuthor().trim().equals("Não Informado") ||
                 data.getAuthor().trim().equalsIgnoreCase("anonimo") ||
                 data.getAuthor().trim().equalsIgnoreCase("anônimo")) {
-            data.setAuthorPosition("Anônimo");
+            data.setAuthor("Anônimo");
         }
     }
 }
