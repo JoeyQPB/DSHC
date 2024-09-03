@@ -35,10 +35,10 @@ public class CommentModel {
     @Column(name = "comment_text", nullable = false)
     private String commentText;
 
-    @Column(name = "upVote", nullable = false)
+    @Column(name = "upvote", nullable = false)
     private Integer upVote;
 
-    @Column(name = "downVote", nullable = false)
+    @Column(name = "downvote", nullable = false)
     private Integer downVote;
 
     @Override
@@ -63,8 +63,8 @@ public class CommentModel {
                 ", authorPosition='" + authorPosition + '\'' +
                 ", commentSubject='" + commentSubject + '\'' +
                 ", commentText='" + commentText + '\'' +
-                ", upVote=" + upVote +
-                ", downVote=" + downVote +
+                ", upvote=" + upVote +
+                ", downvote=" + downVote +
                 '}';
     }
 }
