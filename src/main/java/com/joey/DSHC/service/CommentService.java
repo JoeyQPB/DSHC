@@ -8,6 +8,9 @@ import com.joey.DSHC.model.CommentModel;
 import com.joey.DSHC.repository.CommentRepository;
 import com.joey.DSHC.strategy.commentValidations.ICommentValidations;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -43,17 +46,21 @@ public class CommentService {
         return new ServiceResponse<>(HttpStatus.CREATED, commentModel);
     }
 
-    // get by subject 7 - 7
+    public ServiceResponse<Page<CommentModel>> getAllPagination (int page, int size) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        return new ServiceResponse<>(HttpStatus.OK, this.repository.findAll(pageRequest));
+    }
 
-    public ServiceResponse<Iterable<CommentModel>> finAll () {
+    public ServiceResponse<Iterable<CommentModel>> findAll () {
         return new ServiceResponse<>(HttpStatus.FOUND, this.repository.findAll());
     }
 
-    public ServiceResponse<CommentModel> finById (Long id) {
+    public ServiceResponse<CommentModel> findById (Long id) {
         CommentModel commentModel = this.UtilFindById(id);
         return new ServiceResponse<>(HttpStatus.FOUND, commentModel);
     }
 
+    @Transactional
     public ServiceResponse<CommentModel> addUpVote (Long id) {
         CommentModel commentModel = this.UtilFindById(id);
         commentModel.setUpVote(commentModel.getUpVote() + 1);
@@ -61,6 +68,7 @@ public class CommentService {
         return new ServiceResponse<>(HttpStatus.OK, commentModel);
     }
 
+    @Transactional
     public ServiceResponse<CommentModel> removeUpVote (Long id) {
         CommentModel commentModel = this.UtilFindById(id);
         commentModel.setUpVote(commentModel.getUpVote() - 1);
@@ -68,6 +76,7 @@ public class CommentService {
         return new ServiceResponse<>(HttpStatus.OK, commentModel);
     }
 
+    @Transactional
     public ServiceResponse<CommentModel> addDownVote (Long id) {
         CommentModel commentModel = this.UtilFindById(id);
         commentModel.setDownVote(commentModel.getDownVote() + 1);
@@ -75,6 +84,7 @@ public class CommentService {
         return new ServiceResponse<>(HttpStatus.OK, commentModel);
     }
 
+    @Transactional
     public ServiceResponse<CommentModel> removeDownVote (Long id) {
         CommentModel commentModel = this.UtilFindById(id);
         commentModel.setDownVote(commentModel.getDownVote() - 1);
@@ -82,6 +92,7 @@ public class CommentService {
         return new ServiceResponse<>(HttpStatus.OK, commentModel);
     }
 
+    @Transactional
     public ServiceResponse<String> delete (Long id) {
         this.repository.deleteById(id);
         return new ServiceResponse<>(HttpStatus.OK, "Deleted comment with id: " + id);
