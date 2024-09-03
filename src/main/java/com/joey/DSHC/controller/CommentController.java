@@ -34,7 +34,7 @@ public class CommentController {
         return ResponseEntity.status(serviceResponse.httpStatus()).body(serviceResponse.body());
     }
 
-    @GetMapping("/?page={page}&size={size}")
+    @GetMapping("?page={page}&size={size}")
     public ResponseEntity<Page<CommentModel>> getAllPagination (@PathVariable int page,
                                                                 @PathVariable int size) {
         ServiceResponse<Page<CommentModel>> serviceResponse = this.commentService.getAllPagination(page, size);
