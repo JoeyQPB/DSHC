@@ -10,6 +10,7 @@ import com.joey.DSHC.strategy.commentValidations.ICommentValidations;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -47,7 +48,7 @@ public class CommentService {
     }
 
     public ServiceResponse<Page<CommentModel>> getAllPagination (int page, int size) {
-        PageRequest pageRequest = PageRequest.of(page, size);
+        Pageable pageRequest = PageRequest.of(page, size, Sort.unsorted());
         return new ServiceResponse<>(HttpStatus.OK, this.repository.findAll(pageRequest));
     }
 

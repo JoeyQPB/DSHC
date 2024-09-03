@@ -6,8 +6,11 @@ import com.joey.DSHC.model.CommentModel;
 import com.joey.DSHC.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/comments")
@@ -34,7 +37,7 @@ public class CommentController {
         return ResponseEntity.status(serviceResponse.httpStatus()).body(serviceResponse.body());
     }
 
-    @GetMapping("?page={page}&size={size}")
+    @GetMapping("/page={page}/size={size}")
     public ResponseEntity<Page<CommentModel>> getAllPagination (@PathVariable int page,
                                                                 @PathVariable int size) {
         ServiceResponse<Page<CommentModel>> serviceResponse = this.commentService.getAllPagination(page, size);
