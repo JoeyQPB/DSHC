@@ -23,9 +23,6 @@ public class DatabaseConnectionTest {
     @PostConstruct
     public void testConnection() {
         System.out.println("Testing database connection...");
-        System.out.println("URL: " + databaseUrl);
-        System.out.println("USER: " + databaseUsername);
-        System.out.println("PASSWORD: " + databasePassword);
         try (Connection connection = DriverManager.getConnection(databaseUrl, databaseUsername, databasePassword)) {
             if (connection != null) {
                 System.out.println("Successfully connected to the database!");
