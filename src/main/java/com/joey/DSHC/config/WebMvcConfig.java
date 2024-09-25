@@ -21,10 +21,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .allowedMethods("POST", "GET", "PUT", "DELETE", "HEAD", "OPTIONS");
     }
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/**")
-                .addResourceLocations("classpath:/static/")
-                .resourceChain(false);
-    }
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("/**")
+//                .addResourceLocations("classpath:/static/")
+//                .resourceChain(false);
+//    }
 }
