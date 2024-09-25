@@ -16,29 +16,35 @@ public class RestExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     private ResponseEntity<String> exceptionHandler (Exception exception) {
-        LOGGER.error("Error: Exception - " + exception.getMessage());
+        this.shoeLogError("Exception", exception);
         ErrorResponse<String> threatResponse = new ErrorResponse<>(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         return ResponseEntity.status(threatResponse.httpStatus()).body("ControllerAdvice - " + threatResponse.body());
     }
 
     @ExceptionHandler(RuntimeException.class)
     private ResponseEntity<String> runtimeExceptionHandler (RuntimeException exception) {
-        LOGGER.error("Error: RuntimeException - " + exception.getMessage());
+        this.shoeLogError("RuntimeException", exception);
         ErrorResponse<String> threatResponse = new ErrorResponse<>(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         return ResponseEntity.status(threatResponse.httpStatus()).body("ControllerAdvice - " + threatResponse.body());
     }
 
     @ExceptionHandler(CommentNotFoundException.class)
     private ResponseEntity<String> commentNotFoundExceptionHandler (CommentNotFoundException exception) {
-        LOGGER.error("Error: CommentNotFoundException - " + exception.getMessage());
+        this.shoeLogError("CommentNotFoundException", exception);
         ErrorResponse<String> threatResponse = new ErrorResponse<>(HttpStatus.NOT_FOUND, exception.getMessage());
         return ResponseEntity.status(threatResponse.httpStatus()).body("ControllerAdvice - " + threatResponse.body());
     }
 
     @ExceptionHandler(InvalidArgumentException.class)
     private ResponseEntity<String> invalidArgumentExceptionHandler (InvalidArgumentException exception) {
-        LOGGER.error("Error: InvalidArgumentException - " + exception.getMessage());
+        this.shoeLogError("InvalidArgumentException", exception);
         ErrorResponse<String> threatResponse = new ErrorResponse<>(HttpStatus.BAD_REQUEST, exception.getMessage());
         return ResponseEntity.status(threatResponse.httpStatus()).body("ControllerAdvice - " + threatResponse.body());
+    }
+
+    private void shoeLogError (String name, Exception exception) {
+        LOGGER.error("Error: {} - {}", name, exception.getMessage());
+        LOGGER.error("Error: {} cause - {}", name, String.valueOf(exception.getCause()));
+        LOGGER.error("Error: {} toString - {}", name, exception.toString());
     }
 }
