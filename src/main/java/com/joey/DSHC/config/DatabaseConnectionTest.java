@@ -1,4 +1,4 @@
-package com.joey.DSHC.db;
+package com.joey.DSHC.config;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;

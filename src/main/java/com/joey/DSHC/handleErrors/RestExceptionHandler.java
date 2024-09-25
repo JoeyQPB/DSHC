@@ -45,6 +45,5 @@ public class RestExceptionHandler {
     private void shoeLogError (String name, Exception exception) {
         LOGGER.error("Error: {} - {}", name, exception.getMessage());
         LOGGER.error("Error: {} cause - {}", name, String.valueOf(exception.getCause()));
-        LOGGER.error("Error: {} toString - {}", name, exception.toString());
     }
 }

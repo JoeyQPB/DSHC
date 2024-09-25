@@ -1,11 +1,14 @@
-package com.joey.DSHC.db;
+package com.joey.DSHC.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
+@EnableWebMvc
 public class WebMvcConfig implements WebMvcConfigurer {
 
     @Value("${url.frontend}")
@@ -16,5 +19,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins(urlFrontEnd)
                 .allowedMethods("POST", "GET", "PUT", "DELETE", "HEAD", "OPTIONS");
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/**")
+                .addResourceLocations("classpath:/static/")
+                .resourceChain(false);
     }
 }
