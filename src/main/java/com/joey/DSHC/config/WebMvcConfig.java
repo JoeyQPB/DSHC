@@ -17,13 +17,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins(urlFrontEnd,
-                        "https://66f5045054301f00071d2ec4--desenvolvimento-colaborativo.netlify.app/",
-                        "https://desenvolvimento-colaborativo.netlify.app/",
-                        "https://main--desenvolvimento-colaborativo.netlify.app/",
-                        "https://66f5045054301f00071d2ec4--desenvolvimento-colaborativo.netlify.app/**",
-                        "https://desenvolvimento-colaborativo.netlify.app/**",
-                        "https://main--desenvolvimento-colaborativo.netlify.app/**")
+                .allowedOrigins(
+                        "https://66f5045054301f00071d2ec4--desenvolvimento-colaborativo.netlify.app",
+                        "https://desenvolvimento-colaborativo.netlify.app",
+                        "https://main--desenvolvimento-colaborativo.netlify.app"
+                )
                 .allowedMethods("POST", "GET", "PUT", "DELETE", "HEAD", "OPTIONS");
     }
 
