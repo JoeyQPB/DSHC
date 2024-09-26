@@ -53,12 +53,12 @@ public class CommentService {
     }
 
     public ServiceResponse<Iterable<CommentModel>> findAll () {
-        return new ServiceResponse<>(HttpStatus.FOUND, this.repository.findAll());
+        return new ServiceResponse<>(HttpStatus.OK, this.repository.findAll());
     }
 
     public ServiceResponse<CommentModel> findById (Long id) {
         CommentModel commentModel = this.UtilFindById(id);
-        return new ServiceResponse<>(HttpStatus.FOUND, commentModel);
+        return new ServiceResponse<>(HttpStatus.OK, commentModel);
     }
 
     @Transactional
